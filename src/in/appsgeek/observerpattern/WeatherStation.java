@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class WeatherStation implements IObservable {
-    List<IObserver> observersList = new CopyOnWriteArrayList<>();
+    private List<IObserver> observersList = new CopyOnWriteArrayList<>();
+    private int temprature;
 
     public void register(IObserver observer) {
         observersList.add(observer);
@@ -21,6 +22,11 @@ public class WeatherStation implements IObservable {
             observer.update();
             remove(observer);
         }
+    }
+
+    public void setState(int temprature){
+        this.temprature=temprature;
+        notifyObserver();
     }
 
     public String getTemprature(){

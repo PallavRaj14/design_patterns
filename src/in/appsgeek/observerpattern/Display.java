@@ -5,6 +5,6 @@ public class Display {
         WeatherStation station = new WeatherStation();
         PhoneDisplay observer= new PhoneDisplay(station);
         observer.registerObserver();
-        station.notifyObserver();
+        station.setState(10);
     }
 }
