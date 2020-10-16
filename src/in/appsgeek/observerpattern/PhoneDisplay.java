@@ -9,7 +9,7 @@ public class PhoneDisplay implements IObserver {
     }
 
     public void registerObserver(){
-        weatherStation.register(new PhoneDisplay(weatherStation));
+        weatherStation.register(this);
     }
 
     @Override
