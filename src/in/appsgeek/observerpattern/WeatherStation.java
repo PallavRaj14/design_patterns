@@ -1,18 +1,15 @@
 package in.appsgeek.observerpattern;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class WeatherStation implements IObservable {
-    List<IObserver> observersList = new ArrayList<>();
+    List<IObserver> observersList = new CopyOnWriteArrayList<>();
 
     public void register(IObserver observer) {
         observersList.add(observer);
     }
 
-    /*
-    * No added functionality yet
-    * */
     @Override
     public void remove(IObserver observer) {
         observersList.remove(observer);
@@ -22,6 +19,7 @@ public class WeatherStation implements IObservable {
     public void notifyObserver() {
         for (IObserver observer: observersList) {
             observer.update();
+            remove(observer);
         }
     }
 
