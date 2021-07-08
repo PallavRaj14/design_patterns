@@ -3,11 +3,14 @@ package in.appsgeek.observerpattern;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static java.lang.String.valueOf;
+
 public class WeatherStation implements IObservable {
     private List<IObserver> observersList = new CopyOnWriteArrayList<>();
     private int temprature;
 
     public void register(IObserver observer) {
+        observer.getClass();
         observersList.add(observer);
     }
 
@@ -30,6 +33,6 @@ public class WeatherStation implements IObservable {
     }
 
     public String getTemprature(){
-        return "40 degree C";
+        return valueOf(temprature+"\u00B0"+"C");
     }
 }
